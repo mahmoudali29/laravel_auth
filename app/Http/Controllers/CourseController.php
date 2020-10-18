@@ -61,6 +61,8 @@ class CourseController extends Controller
 
         $objCourse->save();
         return Redirect::back()->with('sucessMSG', 'Course Added Succesfully !');
+
+        
     }
 
     /**
