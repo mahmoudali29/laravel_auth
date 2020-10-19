@@ -67,6 +67,13 @@
                   Sliders
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link {{ (Request::segment(1)=='admin' && Request::segment(2)=='events') ? 'active' : ''  }} " href="{{ url('admin/events') }}">
+                  <span data-feather="airplay"></span>
+                  Events
+                </a>
+              </li>
                
                
               

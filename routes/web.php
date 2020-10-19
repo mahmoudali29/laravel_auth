@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,8 @@ Route::get('/admin/dashboard','App\Http\Controllers\AdminController@Dashboard');
 //================== Course Moduel ==========================//
 Route::resource('admin/courses', CourseController::class)->middleware('auth');
 Route::resource('admin/sliders', SliderController::class)->middleware('auth');
+
+Route::resource('admin/events', EventController::class)->middleware('auth');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
