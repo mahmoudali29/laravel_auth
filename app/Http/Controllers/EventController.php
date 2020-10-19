@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Http\Requests\EventValidation;
+use Redirect;
 class EventController extends Controller
 {
     /**
@@ -26,7 +28,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.events.create');
     }
 
     /**
@@ -35,9 +37,12 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventValidation $request)
     {
         //
+
+        Event::create($request->all());
+        return Redirect::back()->with('sucessMSG', 'Event Added Succesfully !');
     }
 
     /**
