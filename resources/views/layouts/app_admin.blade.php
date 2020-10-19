@@ -74,6 +74,13 @@
                   Events
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link {{ (Request::segment(1)=='admin' && Request::segment(2)=='speakers') ? 'active' : ''  }} " href="{{ url('admin/speakers') }}">
+                  <span data-feather="airplay"></span>
+                  Speakers
+                </a>
+              </li>
                
                
               

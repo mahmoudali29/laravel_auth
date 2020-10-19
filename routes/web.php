@@ -5,6 +5,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SpeakerController;
+
 
 
 /*
@@ -35,6 +37,10 @@ Route::resource('admin/courses', CourseController::class)->middleware('auth');
 Route::resource('admin/sliders', SliderController::class)->middleware('auth');
 
 Route::resource('admin/events', EventController::class)->middleware('auth');
+
+Route::resource('admin/speakers', SpeakerController::class)->middleware('auth');
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
