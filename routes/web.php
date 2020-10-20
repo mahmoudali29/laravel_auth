@@ -6,6 +6,8 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SpeakerController;
+use App\Http\Controllers\EventSpeakerController;
+
 
 
 
@@ -38,7 +40,17 @@ Route::resource('admin/sliders', SliderController::class)->middleware('auth');
 
 Route::resource('admin/events', EventController::class)->middleware('auth');
 
+Route::get('/admin/eventspeakers/{event_id}','App\Http\Controllers\EventController@EventSpeakers')->middleware('auth');;
+
+Route::post('/admin/eventspeakers','App\Http\Controllers\EventController@StoreEventSpeakers')->middleware('auth');
+
+Route::delete('/admin/eventspeakers/{speaker_id}/{event_id}','App\Http\Controllers\EventController@DestroyEventSpeakers')->middleware('auth');
+
+ 
+
 Route::resource('admin/speakers', SpeakerController::class)->middleware('auth');
+
+// Route::resource('admin/eventspeakers', EventSpeakerController::class)->middleware('auth');
 
 
 

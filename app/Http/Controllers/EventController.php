@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Speaker;
+use App\Models\EventSpeaker;
+
 use App\Http\Requests\EventValidation;
 use Redirect;
 class EventController extends Controller
@@ -100,5 +103,30 @@ class EventController extends Controller
         //
         Event::findOrFail($id)->delete();
         return Redirect::back()->with('sucessMSG', 'Event Deleted Succesfully !');
+    }
+
+    public function EventSpeakers($event_id)
+    {
+        // show all speeaker depending on event
+        $objEvent = Event::find($event_id);
+        $arrEventSpeakers = $objEvent->Speakers; 
+
+        $arrSpeakers = Speaker::all();
+
+        return view('backend.events.event_speakers',compact('objEvent','arrEventSpeakers','arrSpeakers','event_id'));
+    }
+
+    public function StoreEventSpeakers(request $request)
+    {
+        EventSpeaker::create($request->all());
+        return Redirect::back()->with('sucessMSG', 'Event Speaker Added Succesfully !');
+    }
+
+    public function DestroyEventSpeakers ($speaker_id,$event_id)
+    {
+        EventSpeaker::where('speaker_id',$speaker_id)
+        ->where('event_id',$event_id)->first()->delete();
+
+        return Redirect::back()->with('sucessMSG', 'Event Speaker Deleted Succesfully !');
     }
 }

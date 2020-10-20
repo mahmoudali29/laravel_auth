@@ -11,4 +11,9 @@ class Event extends Model
     use SoftDeletes;
 
     protected $fillable = ['topics','description','source_title','source_title_writer','host','location','website','start_date','end_date'];
+
+    public function Speakers()
+    {
+    	return $this->belongsToMany('App\Models\Speaker','event_speakers')->where('event_speakers.deleted_at', NULL);
+    }
 }
