@@ -1,5 +1,5 @@
 @extends('layouts.app_admin')
-@section('title','Edit Events')
+@section('title','Edit speakers')
 @section('content')
  
         
@@ -9,48 +9,37 @@
                 {{ session('sucessMSG') }}
             </div>
           @endif
-
-
-        	<form action="{{ url('admin/courses') }}/{{ $objCourse->id }}" method="post" enctype="multipart/form-data">
+ 
+          @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+ 
+          <form action="{{ url('admin/speakers') }}/{{ $objSpeaker->id }}" method="post">
                 @method('patch')
                 @csrf
                 <div class="form-group">
-                  <label for="name">Course Name</label>
-                  <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  placeholder="Enter Course Name" value="{{ $objCourse->name }}">
-
+                  <label for="name">Speaker Name</label>
+                  <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  placeholder="Enter Speaker Name" value="{{ $objSpeaker->name }}">
+ 
                   @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
-                   
                 </div>
-
+ 
                 <div class="form-group">
-                  <label for="price">Price</label>
-                  <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"  placeholder="Enter Course Price" value="{{ $objCourse->price }}">
-
-                  @error('price')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-
-                </div>
-
-                <div class="form-group">
-                  <label for="price">Description</label>
-                  <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ $objCourse->description }}</textarea>
-
-                  @error('description')
+                  <label for="position">Position</label>
+                  <input type="text" class="form-control @error('position') is-invalid @enderror" id="position" name="position"  placeholder="Enter Speaker position" value="{{ $objSpeaker->position }}">
+                  @error('position')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                 </div>
-
-                <div class="form-group">
-                  <label for="price">Image</label>
-                  <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
-                  @error('image')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-                  <img style="width: 100px;height: 100px;" src="{{ url('') }}/{{ $objCourse->image }}">
-                </div>
+ 
                 
              
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -86,7 +86,7 @@
 
                 <div class="form-group">
                   <label for="start_date">Start Date</label>
-                  <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date"  placeholder="start_date" value="{{ $objEvent->start_date }}">
+                  <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date"  placeholder="start_date" value="{{ date("Y-m-d\TH:i",strtotime($objEvent->start_date)) }}">
 
                   @error('start_date')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -96,7 +96,7 @@
 
                 <div class="form-group">
                   <label for="end_date">End Date</label>
-                  <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name="end_date"  placeholder="end_date" value="{{ $objEvent->end_date }}">
+                  <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name="end_date"  placeholder="end_date" value="{{ date("Y-m-d\TH:i", strtotime($objEvent->end_date)) }}">
 
                   @error('end_date')
                     <div class="alert alert-danger">{{ $message }}</div>

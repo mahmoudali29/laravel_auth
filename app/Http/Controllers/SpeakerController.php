@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Speaker;
+use App\Http\Requests\SpeakerValidation;
+use Redirect;
 class SpeakerController extends Controller
 {
     /**
@@ -24,7 +26,7 @@ class SpeakerController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.speakers.create');
     }
 
     /**
@@ -33,9 +35,10 @@ class SpeakerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SpeakerValidation $request)
     {
-        //
+        Speaker::create($request->all());
+        return Redirect::back()->with('sucessMSG','Speaker Added Successfully !');
     }
 
     /**
@@ -46,7 +49,8 @@ class SpeakerController extends Controller
      */
     public function show($id)
     {
-        //
+        $objSpeaker = Speaker::findOrFail($id);
+        return view('backend.speakers.show',compact('objSpeaker'));
     }
 
     /**
@@ -57,7 +61,8 @@ class SpeakerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $objSpeaker = Speaker::findOrFail($id);
+        return view('backend.speakers.edit',compact('objSpeaker'));
     }
 
     /**
@@ -67,9 +72,11 @@ class SpeakerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SpeakerValidation $request, $id)
     {
-        //
+        $objSpeaker = Speaker::findOrFail($id);
+        $objSpeaker ->update($request -> all());
+        return Redirect::back()->with('sucessMSG', 'Speaker Updated Succesfully !');
     }
 
     /**
@@ -80,6 +87,7 @@ class SpeakerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Speaker::findOrFail($id)->delete();
+        return Redirect::back()->with('sucessMSG','Speaker deleted Added Successfully !');
     }
 }

@@ -68,6 +68,10 @@ class EventController extends Controller
     {
         $objEvent = Event::findOrFail($id);
 
+        $string_date = strtotime($objEvent->start_date);
+
+        //print_r(date("j F: Y: g:i a",$string_date)); die;
+
         return view('backend.events.edit',compact('objEvent'));
     }
 
