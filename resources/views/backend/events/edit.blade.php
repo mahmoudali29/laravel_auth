@@ -11,32 +11,23 @@
           @endif
 
 
-        	<form action="{{ url('admin/courses') }}/{{ $objCourse->id }}" method="post" enctype="multipart/form-data">
+        	<form action="{{ url('admin/events') }}/{{ $objEvent->id }}" method="post" enctype="multipart/form-data">
                 @method('patch')
                 @csrf
                 <div class="form-group">
-                  <label for="name">Course Name</label>
-                  <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  placeholder="Enter Course Name" value="{{ $objCourse->name }}">
+                  <label for="topics">Topics</label>
+                  <input type="text" class="form-control @error('topics') is-invalid @enderror" id="topics" name="topics"  placeholder="Enter Course topics" value="{{ $objEvent->topics }}">
 
-                  @error('name')
+                  @error('topics')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                    
                 </div>
 
+                 
                 <div class="form-group">
-                  <label for="price">Price</label>
-                  <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"  placeholder="Enter Course Price" value="{{ $objCourse->price }}">
-
-                  @error('price')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-
-                </div>
-
-                <div class="form-group">
-                  <label for="price">Description</label>
-                  <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ $objCourse->description }}</textarea>
+                  <label for="description">Description</label>
+                  <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ $objEvent->description }}</textarea>
 
                   @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -44,12 +35,73 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="price">Image</label>
-                  <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
-                  @error('image')
+                  <label for="source_title">Source Title</label>
+                  <input type="text" class="form-control @error('source_title') is-invalid @enderror" id="source_title" name="source_title"  placeholder="Enter Course source_title" value="{{ $objEvent->source_title }}">
+
+                  @error('source_title')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
-                  <img style="width: 100px;height: 100px;" src="{{ url('') }}/{{ $objCourse->image }}">
+                   
+                </div>
+
+                <div class="form-group">
+                  <label for="source_title_writer">Source Title Writer</label>
+                  <input type="text" class="form-control @error('source_title_writer') is-invalid @enderror" id="source_title_writer" name="source_title_writer"  placeholder="Enter Course source_title_writer" value="{{ $objEvent->source_title_writer }}">
+
+                  @error('source_title_writer')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                   
+                </div>
+
+                <div class="form-group">
+                  <label for="host">Host</label>
+                  <input type="text" class="form-control @error('host') is-invalid @enderror" id="host" name="host"  placeholder="Enter Course host" value="{{ $objEvent->host }}">
+
+                  @error('host')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                   
+                </div>
+
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <input type="text" class="form-control @error('location') is-invalid @enderror" id="location" name="location"  placeholder="Enter Course location" value="{{ $objEvent->location }}">
+
+                  @error('location')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                   
+                </div>
+
+                <div class="form-group">
+                  <label for="website">Website</label>
+                  <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website"  placeholder="Enter Course website" value="{{ $objEvent->website }}">
+
+                  @error('website')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                   
+                </div>
+
+                <div class="form-group">
+                  <label for="start_date">Start Date</label>
+                  <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date"  placeholder="start_date" value="{{ $objEvent->start_date }}">
+
+                  @error('start_date')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                   
+                </div>
+
+                <div class="form-group">
+                  <label for="end_date">End Date</label>
+                  <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name="end_date"  placeholder="end_date" value="{{ $objEvent->end_date }}">
+
+                  @error('end_date')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                   
                 </div>
                 
              

@@ -53,7 +53,9 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $objEvent = Event::findOrFail($id);
+
+        return view('backend.events.show',compact('objEvent'));
     }
 
     /**
@@ -64,7 +66,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $objEvent = Event::findOrFail($id);
+
+        return view('backend.events.edit',compact('objEvent'));
     }
 
     /**
@@ -74,9 +78,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventValidation $request, $id)
     {
-        //
+        $objEvent = Event::findOrFail($id);
+        $objEvent->update($request->all());
+        return Redirect::back()->with('sucessMSG', 'Event Updated Succesfully !');
     }
 
     /**
@@ -88,5 +94,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+        Event::findOrFail($id)->delete();
+        return Redirect::back()->with('sucessMSG', 'Event Deleted Succesfully !');
     }
 }
