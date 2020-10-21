@@ -50,6 +50,15 @@ Route::delete('/admin/eventspeakers/{speaker_id}/{event_id}','App\Http\Controlle
 
 Route::resource('admin/speakers', SpeakerController::class)->middleware('auth');
 
+
+Route::get('/admin/speakerevents/{speaker_id}','App\Http\Controllers\SpeakerController@SpeakerEvents')->middleware('auth');;
+
+Route::post('/admin/speakerevents','App\Http\Controllers\SpeakerController@StoreSpeakerEvents')->middleware('auth');
+
+Route::delete('/admin/speakerevents/{speaker_id}/{event_id}','App\Http\Controllers\SpeakerController@DestroySpeakerEvents')->middleware('auth');
+
+
+
 // Route::resource('admin/eventspeakers', EventSpeakerController::class)->middleware('auth');
 
 

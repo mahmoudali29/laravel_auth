@@ -10,4 +10,9 @@ class Speaker extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['name','position'];
+
+    public function Events()
+    {
+        return $this->belongsToMany('App\Models\Event','event_speakers')->where('event_speakers.deleted_at', NULL);
+    }
 }

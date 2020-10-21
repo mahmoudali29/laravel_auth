@@ -21,6 +21,7 @@
                         <th>#</th>
                         <th>Speaker Name</th>
                         <th>Speaker Position</th>
+                        <th>Events</th>
                         <th>Actions</th>
                     </tr>
                   </thead>
@@ -31,6 +32,7 @@
                         <td>{{ $objSpeaker->id }}</td>
                         <td>{{ $objSpeaker->name }}</td>
                         <td>{{ $objSpeaker->position }}</td>
+                        <td><a class="btn btn-primary" href="{{ url('admin/speakerevents') }}/{{ $objSpeaker->id }}"> Events </a></td>
                         <td>
                             <a class="btn btn-primary" href="{{ url('admin/speakers/') }}/{{ $objSpeaker->id }}/edit"> Edit </a>
                             <a class="btn btn-secondary" href="{{ url('admin/speakers/') }}/{{ $objSpeaker->id }}"> Show </a>
