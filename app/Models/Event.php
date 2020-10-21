@@ -16,4 +16,8 @@ class Event extends Model
     {
     	return $this->belongsToMany('App\Models\Speaker','event_speakers')->where('event_speakers.deleted_at', NULL);
     }
+
+    public function Photos(){
+       return $this->hasMany('App\Models\EventPhotos')->where('event_photos.deleted_at', NULL);
+   }
 }

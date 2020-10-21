@@ -133,7 +133,9 @@ class EventController extends Controller
 
     public function EventPhotos($event_id)
     {
-        return view('backend.events.event_photos',compact('event_id'));
+        $objEvent = Event::find($event_id);
+        $arrEventPhotos = $objEvent->Photos;
+        return view('backend.events.event_photos',compact('event_id','arrEventPhotos'));
     }
 
     public function StoreEventPhotos (request $request , $event_id)
@@ -158,5 +160,12 @@ class EventController extends Controller
 
         return Redirect::back()->with('sucessMSG', 'Event Photo Added Succesfully !');
 
+    }
+
+    public function DestroyEventPhotos($id)
+    {
+        //
+        EventPhotos::findOrFail($id)->delete();
+        return Redirect::back()->with('sucessMSG', 'Event Photo Deleted Succesfully !');
     }
 }

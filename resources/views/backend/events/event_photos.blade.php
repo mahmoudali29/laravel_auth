@@ -54,7 +54,22 @@
                     </tr>
                   </thead>
                   <tbody>
-                     
+                     @foreach($arrEventPhotos as $objEventPhoto)
+                     <tr>
+                        <td>{{ $objEventPhoto->id }}</td>
+                        <td><img style="width: 100px;height: 100px;" src="{{ url('') }}/{{ $objEventPhoto->photo }}"></td>
+                        <td>{{ $objEventPhoto->type }}</td>
+                        <td>
+                            
+                            <form action="{{ url('admin/eventphotos') }}/{{ $objEventPhoto->id }}" method="post" enctype="multipart/form-data">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                @method('delete')
+                                @csrf
+                            </form>
+                        </td>
+                        
+                     </tr>
+                     @endforeach
                     
  
                   </tbody>
