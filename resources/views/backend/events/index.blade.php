@@ -29,6 +29,7 @@
 	                  	<th>Start At</th>
 	                  	<th>End At</th>
 	                  	<th>Speakers</th>
+	                  	<th>Photos</th>
 	                  	<th>Actions</th>
 	                </tr>
 	              </thead>
@@ -46,7 +47,11 @@
 	                  	<td>{{ $objEvent->website }}</td>
 	                  	<td>{{ $objEvent->start_date }}</td>
 	                  	<td>{{ $objEvent->end_date }}</td>
+
+
 	                  	<td><a class="btn btn-primary" href="{{ url('admin/eventspeakers') }}/{{ $objEvent->id }}"> Speakers </a></td>
+
+	                  	<td><a class="btn btn-secondary" href="{{ url('admin/eventphotos') }}/{{ $objEvent->id }}"> Photos </a></td>
 	                  	 
 	                  	<td>
 	                  		<a class="btn btn-primary" href="{{ url('admin/events/') }}/{{ $objEvent->id }}/edit"> Edit </a>

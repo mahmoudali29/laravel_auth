@@ -129,4 +129,9 @@ class EventController extends Controller
 
         return Redirect::back()->with('sucessMSG', 'Event Speaker Deleted Succesfully !');
     }
+
+    public function EventPhotos($event_id)
+    {
+        return view('backend.events.event_photos');
+    }
 }

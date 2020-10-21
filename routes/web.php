@@ -40,11 +40,17 @@ Route::resource('admin/sliders', SliderController::class)->middleware('auth');
 
 Route::resource('admin/events', EventController::class)->middleware('auth');
 
-Route::get('/admin/eventspeakers/{event_id}','App\Http\Controllers\EventController@EventSpeakers')->middleware('auth');;
+Route::get('/admin/eventspeakers/{event_id}','App\Http\Controllers\EventController@EventSpeakers')->middleware('auth');
 
 Route::post('/admin/eventspeakers','App\Http\Controllers\EventController@StoreEventSpeakers')->middleware('auth');
 
 Route::delete('/admin/eventspeakers/{speaker_id}/{event_id}','App\Http\Controllers\EventController@DestroyEventSpeakers')->middleware('auth');
+
+Route::get('/admin/eventphotos/{event_id}','App\Http\Controllers\EventController@EventPhotos')->middleware('auth');
+
+Route::post('/admin/eventphotos/{event_id}','App\Http\Controllers\EventController@StoreEventPhotos')->middleware('auth');
+
+Route::delete('/admin/eventphotos/{photo_id}','App\Http\Controllers\EventController@DestroyEventPhotos')->middleware('auth');
 
  
 
