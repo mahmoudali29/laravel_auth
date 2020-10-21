@@ -12,7 +12,34 @@
             @endif
  
              
+            <form action="{{ url('admin/eventphotos') }}/{{ $event_id }}" method="post" enctype="multipart/form-data">
+                @csrf
 
+                <div class="form-group">
+                    <label for="price">Type</label>
+                    
+                    <select class="form-control" name="type">
+                        <option value="slider">Slider</option>
+                        <option value="photo_galary">Photo Galary</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Image</label>
+                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                    @error('image')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+
+
+
+
+                 
+ 
+                <button type="submit" class="btn btn-primary">Submit</button>
+             </form>
 
 
             <h2>Photos</h2>

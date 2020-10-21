@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\EventSpeaker;
+use App\Models\EventPhotos;
 
 use App\Http\Requests\EventValidation;
 use Redirect;
@@ -132,6 +133,30 @@ class EventController extends Controller
 
     public function EventPhotos($event_id)
     {
-        return view('backend.events.event_photos');
+        return view('backend.events.event_photos',compact('event_id'));
+    }
+
+    public function StoreEventPhotos (request $request , $event_id)
+    {
+        $rules = $request->validate([
+            'image' => 'required|mimes:jpeg,bmp,png',
+        ]);
+
+
+        $objEventPhoto = new EventPhotos();
+        $objEventPhoto->event_id = $event_id;
+        $objEventPhoto->type = $request->type;
+
+        
+        $image = $request->image;
+        $image_name = time().".".$image->getClientOriginalExtension();
+        $destination = "images/event_photos";
+        $image->move($destination,$image_name);
+
+        $objEventPhoto->photo = $destination."/".$image_name;
+        $objEventPhoto->save();
+
+        return Redirect::back()->with('sucessMSG', 'Event Photo Added Succesfully !');
+
     }
 }
