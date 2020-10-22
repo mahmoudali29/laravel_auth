@@ -22,6 +22,6 @@ class Event extends Model
    }
 
     public function Photo(){
-       return $this->hasOne('App\Models\EventPhotos')->where('event_photos.deleted_at', NULL);
+       return $this->hasOne('App\Models\EventPhotos')->where('event_photos.deleted_at', NULL)->where('event_photos.type', 'photo_galary');
    }
 }
