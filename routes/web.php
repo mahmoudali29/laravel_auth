@@ -32,6 +32,10 @@ Route::get('/about-us','App\Http\Controllers\HomeController@AboutUs')->name('abo
 Route::get('/contact-us','App\Http\Controllers\HomeController@ContactUs')->name('contactus');
 
 Route::get('/events','App\Http\Controllers\HomeController@Events')->name('events');
+Route::get('/event_details/{event_id}','App\Http\Controllers\HomeController@EventDetails')->name('event_details');
+
+
+
 
 Route::post('/frontendregister','App\Http\Controllers\HomeController@Register');
 

@@ -52,4 +52,15 @@ class HomeController extends Controller
         $arrEvents = Event::all();
         return view('frontend.events',compact('arrEvents'));
     }
+
+    public function EventDetails($event_id)
+    {
+        $objEvent = Event::find($event_id);
+        $arrSliderPhotos = $objEvent->SliderPhotos;
+        $arrGalaryPhotos = $objEvent->GalaryPhotos;
+        $arrSpeakers = $objEvent->Speakers;
+
+        
+        return view('frontend.event_details',compact('objEvent','arrSliderPhotos','arrGalaryPhotos','arrSpeakers'));
+    }
 }

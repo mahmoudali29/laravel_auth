@@ -19,9 +19,17 @@ class Event extends Model
 
     public function Photos(){
        return $this->hasMany('App\Models\EventPhotos')->where('event_photos.deleted_at', NULL);
-   }
+    }
 
     public function Photo(){
        return $this->hasOne('App\Models\EventPhotos')->where('event_photos.deleted_at', NULL)->where('event_photos.type', 'photo_galary');
    }
+
+    public function SliderPhotos(){
+       return $this->hasMany('App\Models\EventPhotos')->where('event_photos.deleted_at', NULL)->where('event_photos.type','slider');
+    }
+
+    public function GalaryPhotos(){
+       return $this->hasMany('App\Models\EventPhotos')->where('event_photos.deleted_at', NULL)->where('event_photos.type','photo_galary');
+    }
 }
