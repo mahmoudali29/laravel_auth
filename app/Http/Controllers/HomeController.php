@@ -9,6 +9,7 @@ use App\Models\Slider;
 use App\Models\Registration;
 use Redirect;
 use App\Http\Requests\Register;
+use App\Models\Event;
 class HomeController extends Controller
 {
     //
@@ -25,12 +26,12 @@ class HomeController extends Controller
 
     public function AboutUs()
     {
-        return view('about');
+        return view('frontend.about');
     }
 
     public function ContactUs()
     {
-        return view('contact');
+        return view('frontend.contact');
     }
 
     public function CourseDetails ($course_id,$course_name=''){
@@ -44,5 +45,11 @@ class HomeController extends Controller
     {
         Registration::create($request->all());
         return Redirect::back()->with('sucessMSG', 'Email Added Succesfully !');
+    }
+
+    public function Events()
+    {
+        $arrEvents = Event::all();
+        return view('frontend.events',compact('arrEvents'));
     }
 }

@@ -30,6 +30,9 @@ Route::get('/','App\Http\Controllers\HomeController@index')->name('Home');
 Route::get('/index','App\Http\Controllers\HomeController@index');
 Route::get('/about-us','App\Http\Controllers\HomeController@AboutUs')->name('aboutus');
 Route::get('/contact-us','App\Http\Controllers\HomeController@ContactUs')->name('contactus');
+
+Route::get('/events','App\Http\Controllers\HomeController@Events')->name('events');
+
 Route::post('/frontendregister','App\Http\Controllers\HomeController@Register');
 
 Route::get('/admin','App\Http\Controllers\AdminController@Dashboard');

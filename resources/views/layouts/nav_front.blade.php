@@ -4,6 +4,10 @@
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
               <li class="{{ Request::segment(1)=='' ? 'active' : ''  }}"><a href="{{ url('/') }}">Home</a></li>
+
+
+              <li class="{{ Request::segment(1)=='events' ? 'active' : ''  }}"><a href="{{ url('/events') }}">Events</a></li>
+
               <li class="{{ Request::segment(1)=='about-us' ? 'active' : ''  }}"><a href="{{ url('/about-us') }}">About US</a></li>
               <li class="{{ Request::segment(1)=='contact-us' ? 'active' : ''  }}"><a href="{{ url('/contact-us') }}">Contact US</a></li>
 
