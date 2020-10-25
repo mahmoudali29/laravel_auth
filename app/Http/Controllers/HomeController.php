@@ -7,6 +7,8 @@ use App\Models\Course;
 use App\Models\Teacher;
 use App\Models\Slider;
 use App\Models\Registration;
+use App\Models\EventRegisterations;
+use App\http\Requests\EventRegisterValidate;
 use Redirect;
 use App\Http\Requests\Register;
 use App\Models\Event;
@@ -62,5 +64,13 @@ class HomeController extends Controller
 
         
         return view('frontend.event_details',compact('objEvent','arrSliderPhotos','arrGalaryPhotos','arrSpeakers'));
+    }
+
+    public function EventRegister(EventRegisterValidate $request)
+    {
+        #1- make validation 
+        
+        EventRegisterations::create($request->all());
+        return Redirect::back()->with('sucessMSG', 'Sucessful Register !');
     }
 }

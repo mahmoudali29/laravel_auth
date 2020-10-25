@@ -7,9 +7,11 @@ use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\EventSpeaker;
 use App\Models\EventPhotos;
+use App\Models\EventRegisterations;
 
 use App\Http\Requests\EventValidation;
 use Redirect;
+use Mail;
 class EventController extends Controller
 {
     /**
@@ -109,7 +111,7 @@ class EventController extends Controller
     public function EventSpeakers($event_id)
     {
         // show all speeaker depending on event
-        $objEvent = Event::find($event_id);
+        $objEvent = Event::findOrFail($event_id);
         $arrEventSpeakers = $objEvent->Speakers; 
 
         $arrSpeakers = Speaker::all();
@@ -133,7 +135,7 @@ class EventController extends Controller
 
     public function EventPhotos($event_id)
     {
-        $objEvent = Event::find($event_id);
+        $objEvent = Event::findOrFail($event_id);
         $arrEventPhotos = $objEvent->Photos;
         return view('backend.events.event_photos',compact('event_id','arrEventPhotos'));
     }
@@ -167,5 +169,39 @@ class EventController extends Controller
         //
         EventPhotos::findOrFail($id)->delete();
         return Redirect::back()->with('sucessMSG', 'Event Photo Deleted Succesfully !');
+    }
+
+    public function EventRegistrations($event_id)
+    {
+        $objEvent = Event::findOrFail($event_id);
+        $arrRegistrations = $objEvent->Registrations;
+        return view('backend.events.event_registrations',compact('event_id','arrRegistrations'));
+    }
+
+    public function UpdateEventRegister($event_registrations_id,$status)
+    {
+        // $objEventRegisterations = EventRegisterations::findOrFail($event_registrations_id);
+
+        // $objEventRegisterations->status = $status;
+
+        // $objEventRegisterations->save();  /// update
+
+        // return Redirect::back()->with('sucessMSG', 'Event Registration Updated Succesfully !');
+
+        # to send email with gmail 
+
+        # 1- create gmail account 
+        # 2- setting  >> security (https://myaccount.google.com/security?gar=1)
+        #3- search for Less secure app access and turn it on 
+        $data = array();
+        $strEmail = "mahmoud.ali.29992@gmail.com";
+        Mail::send('emails.accepted_event_register', $data, function ($message)use($strEmail) {
+            $message->subject('Accepted Register');
+            $message->from('mahmoud.ali.29992@gmail.com', 'Mahmoud ali');
+            $message->to($strEmail);
+        });
+
+
+
     }
 }

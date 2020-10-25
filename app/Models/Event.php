@@ -32,4 +32,8 @@ class Event extends Model
     public function GalaryPhotos(){
        return $this->hasMany('App\Models\EventPhotos')->where('event_photos.deleted_at', NULL)->where('event_photos.type','photo_galary');
     }
+
+    public function Registrations(){
+       return $this->hasMany('App\Models\EventRegisterations');
+    }
 }

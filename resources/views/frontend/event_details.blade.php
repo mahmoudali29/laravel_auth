@@ -148,39 +148,65 @@
           </div>
         </div>
         <div class="row">
+
+          
+          
+
           <div class="col-md-6 col-md-offset-3">
-            <form id="booking-form" name="booking-form" action="includes/event-register.php" method="post" enctype="multipart/form-data">
+             
+            @if (session('sucessMSG'))
+              <div class="alert alert-success">
+                  {{ session('sucessMSG') }}
+              </div>
+            @endif
+
+            <form id="booking-form" name="booking-form" action="{{ url('event_register') }}" method="post" >
+              @csrf
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <input type="text" placeholder="Enter Name" name="register_name" required="" class="form-control">
+                    <input type="text" placeholder="Enter Name" name="name"  class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
                   </div>
+                  @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <input type="text" placeholder="Enter Email" name="register_email" class="form-control" required="">
+                    <input type="text" placeholder="Enter Email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
                   </div>
+                  @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <input type="text" placeholder="Enter Phone" name="register_phone" class="form-control" required="">
+                    <input type="text" placeholder="Enter Phone" name="phone" class="form-control @error('phone') is-invalid @enderror"  value="{{ old('phone') }}">
                   </div>
+                  @error('phone')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                 </div>
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label>Ticket types</label>
-                    <select name="ticket_type" class="form-control">
+                    <select name="ticket_type" class="form-control @error('ticket_type') is-invalid @enderror">
                       <option>One Person</option>
                       <option>Two Person</option>
                       <option>Family Pack</option>
                       <option>Premium</option>
                     </select>
                   </div>
+                  @error('ticket_type')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                 </div>
                  
                 <div class="col-sm-12">
                   <div class="form-group text-center">
                     <input name="form_botcheck" class="form-control" type="hidden" value="" />
+                    
+                    <input type="hidden" name="event_id" value="{{ $objEvent->id }}">
                     <button data-loading-text="Please wait..." class="btn btn-dark btn-theme-colored btn-sm btn-block mt-20 pt-10 pb-10" type="submit">Register now</button>
                   </div>
                 </div>

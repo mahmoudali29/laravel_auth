@@ -35,6 +35,8 @@ Route::get('/events','App\Http\Controllers\HomeController@Events')->name('events
 Route::get('/event_details/{event_id}','App\Http\Controllers\HomeController@EventDetails')->name('event_details');
 
 
+Route::post('/event_register','App\Http\Controllers\HomeController@EventRegister');
+
 
 
 Route::post('/frontendregister','App\Http\Controllers\HomeController@Register');
@@ -58,6 +60,11 @@ Route::get('/admin/eventphotos/{event_id}','App\Http\Controllers\EventController
 Route::post('/admin/eventphotos/{event_id}','App\Http\Controllers\EventController@StoreEventPhotos')->middleware('auth');
 
 Route::delete('/admin/eventphotos/{photo_id}','App\Http\Controllers\EventController@DestroyEventPhotos')->middleware('auth');
+
+Route::get('/admin/eventregistrations/{event_id}','App\Http\Controllers\EventController@EventRegistrations')->middleware('auth');
+
+Route::post('/admin/update_event_register/{event_id}/{status}','App\Http\Controllers\EventController@UpdateEventRegister')->middleware('auth');
+
 
  
 
