@@ -180,13 +180,14 @@ class EventController extends Controller
 
     public function UpdateEventRegister($event_registrations_id,$status)
     {
-        // $objEventRegisterations = EventRegisterations::findOrFail($event_registrations_id);
+        $objEventRegisterations = EventRegisterations::findOrFail($event_registrations_id);
 
-        // $objEventRegisterations->status = $status;
+        $objEventRegisterations->status = $status;
 
-        // $objEventRegisterations->save();  /// update
+         
+        $objEventRegisterations->save();  /// update
 
-        // return Redirect::back()->with('sucessMSG', 'Event Registration Updated Succesfully !');
+        
 
         # to send email with gmail 
 
@@ -194,12 +195,15 @@ class EventController extends Controller
         # 2- setting  >> security (https://myaccount.google.com/security?gar=1)
         #3- search for Less secure app access and turn it on 
         $data = array();
-        $strEmail = "mahmoud.ali.29992@gmail.com";
+        $strEmail = $objEventRegisterations->email;
+        $data['name'] = $objEventRegisterations->name;
         Mail::send('emails.accepted_event_register', $data, function ($message)use($strEmail) {
             $message->subject('Accepted Register');
             $message->from('mahmoud.ali.29992@gmail.com', 'Mahmoud ali');
             $message->to($strEmail);
         });
+
+        return Redirect::back()->with('sucessMSG', 'Event Registration Updated Succesfully !');
 
 
 
